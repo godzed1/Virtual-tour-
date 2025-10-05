@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Virtual Tour 360° | สำนักวิทยบริการ ม.อุบล</title>
+  <meta name="description" content="กดเข้าแล้วชม Virtual Tour 360° ได้ทันทีด้วย Thinglink">
+  <style>
+    :root{
+      --ubu-gold:#f9c500; /* โทนเข้ากับ ม.อุบล */
+      --bg:#f5f5f5; --ink:#333; --card:#fff;
+      --radius:14px; --shadow:0 8px 24px rgba(0,0,0,.08);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Prompt,Tahoma,sans-serif;line-height:1.5}
+    header{background:var(--card);border-bottom:1px solid #eaeaea;position:sticky;top:0;z-index:5}
+    .nav{max-width:var(--maxw);margin:auto;padding:12px 20px;display:flex;align-items:center;gap:12px}
+    .brand{font-weight:700}
+    .tag{margin-left:auto;background:var(--ubu-gold);padding:4px 10px;border-radius:999px;font-size:12px}
+
+    .container{max-width:var(--maxw);margin:auto;padding:20px}
+    .hero{
+      border-radius:var(--radius);overflow:hidden;position:relative;min-height:46vh;
+      display:grid;place-items:end start;background:#ddd url('assets/ubu-hero.jpg') center/cover no-repeat;
+      box-shadow:var(--shadow)
+    }
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.7))}
+    .hero-text{position:relative;color:#fff;padding:28px}
+    .hero h1{margin:0 0 6px;font-size:clamp(22px,4vw,36px)} .hero p{margin:0;opacity:.95}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:20px}
+    @media (min-width:800px){.grid{grid-template-columns:1fr 1fr}}
+    .card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#eaeaea}
+    .card-body{padding:16px}
+    .card h3{margin:0 0 6px} .card p{margin:0 0 12px;color:#666}
+    .btns{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{appearance:none;border:none;cursor:pointer;text-decoration:none;
+      padding:12px 16px;border-radius:10px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+    .btn-primary{background:var(--ubu-gold);color:#1f1600}
+    .btn-ghost{background:#fff;border:1px solid #e5e5e5;color:#333}
+
+    /* Fullscreen viewer */
+    .viewer-full{
+      position:fixed;inset:0;background:#000;display:none;z-index:9999;
+    }
+    .viewer-full.active{display:block}
+    .viewer-toolbar{
+      position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;z-index:2
+    }
+    .viewer-title{color:#fff;background:rgba(0,0,0,.4);padding:8px 12px;border-radius:8px}
+    .viewer-close{background:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .viewer-iframe{position:absolute;inset:0;border:0;width:100%;height:100%}
+    footer{padding:20px;text-align:center;color:#777;font-size:14px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">สำนักวิทยบริการ | มหาวิทยาลัยอุบลราชธานี</div>
+      <div class="tag">Virtual Tour 360°</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" role="img" aria-label="ภาพบรรยากาศ ม.อุบล">
+      <div class="hero-text">
+        <h1>กดเข้า แล้วเดินชมได้เลย</h1>
+        <p>เลือกอาคารที่ต้องการ จากนั้นเข้าสู่โหมดเต็มหน้าจอทันที</p>
+      </div>
+    </section>
+
+    <!-- TWO BUILDINGS, ONE-CLICK ENTER -->
+    <section class="grid" aria-label="อาคารสำหรับเข้าชม">
+      <!-- Building A -->
+      <article class="card">
+        <img src="assets/bldg-a.jpg" alt="อาคาร A สำนักวิทยบริการ">
+        <div class="card-body">
+          <h3>เข้าอาคาร A</h3>
+          <p>กดแล้วเข้าชม Virtual Tour เต็มหน้าจอทันที</p>
+          <div class="btns">
+            <button class="btn btn-primary" data-open-full data-name="อาคาร A"
+                    data-src="https://www.thinglink.com/card/2030297721985827493">▶️ เข้าเลย</button>
+            <a class="btn btn-ghost" target="_blank" rel="noopener"
+               href="https://www.thinglink.com/card/YOUR-THINGLINK-ID-A"></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Building B -->
+      <article class="card">
+        <img src="assets/bldg-b.jpg" alt="อาคาร B สำนักวิทยบริการ">
+        <div class="card-body">
+          <h3>เข้าอาคาร B</h3>
+          <p>กดแล้วเข้าชม Virtual Tour เต็มหน้าจอทันที</p>
+          <div class="btns">
+            <button class="btn btn-primary" data-open-full data-name="อาคาร B"
+                    data-src="https://www.thinglink.com/card/2031102146220393316">▶️ เข้าเลย</button>
+            <a class="btn btn-ghost" target="_blank" rel="noopener"
+               href="https://www.thinglink.com/card/2031102146220393316"></a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Fullscreen overlay viewer -->
+  <div id="viewer" class="viewer-full" aria-hidden="true">
+    <div class="viewer-toolbar">
+      <div class="viewer-title" id="viewerTitle">กำลังโหลด…</div>
+      <button class="viewer-close" id="closeBtn">ออกจากโหมดชม</button>
+    </div>
+    <iframe class="viewer-iframe" id="viewerFrame" title="Thinglink Virtual Tour" loading="eager" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+  <footer>© <span id="y"></span> สำนักวิทยบริการ ม.อุบล • เข้าชม Virtual Tour 360° ได้ทันที</footer>
+
+  <script>
+    // ปีปัจจุบัน
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const overlay = document.getElementById('viewer');
+    const frame   = document.getElementById('viewerFrame');
+    const titleEl = document.getElementById('viewerTitle');
+    const closeBtn= document.getElementById('closeBtn');
+
+    function openFull(src, name){
+      titleEl.textContent = name || 'Virtual Tour';
+      frame.setAttribute('src', src);
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden','false');
+      const el = overlay;
+      if(el.requestFullscreen){ el.requestFullscreen().catch(()=>{}); }
+      else if(el.webkitRequestFullscreen){ el.webkitRequestFullscreen(); }
+    }
+
+    function closeFull(){
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden','true');
+      frame.removeAttribute('src');
+      if(document.fullscreenElement){ document.exitFullscreen().catch(()=>{}); }
+      else if(document.webkitFullscreenElement){ document.webkitExitFullscreen(); }
+    }
+
+    document.querySelectorAll('[data-open-full]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        openFull(btn.getAttribute('data-src'), btn.getAttribute('data-name'));
+        setTimeout(()=>closeBtn.focus(), 300);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeFull);
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && overlay.classList.contains('active')) closeFull();
+    });
+
+    const hash = location.hash.replace('#','');
+    if(hash==='a' || hash==='A'){
+      openFull('https://www.thinglink.com/card/2030297721985827493','อาคาร A');
+    } else if(hash==='b' || hash==='B'){
+      openFull('https://www.thinglink.com/card/2031102146220393316','อาคาร B');
+    }
+  </script>
+</body>
+</html>
